@@ -1,1 +1,1 @@
-# cpp-template
+Template for C++ projects.
