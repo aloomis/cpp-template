@@ -1,4 +1,10 @@
 cc_binary(
-    name="world",
-    srcs=["world.cpp"],
+    name = "world",
+    srcs = ["world.cpp"],
+)
+
+cc_test(
+    name = "world_test",
+    srcs = ["world_test.cpp"],
+    deps = ["@googletest//:gtest_main"],
 )

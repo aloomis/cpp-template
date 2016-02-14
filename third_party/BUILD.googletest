@@ -1,0 +1,28 @@
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "gtest",
+    srcs = glob([
+            "googletest/src/*.cc",
+            "googletest/src/*.h",
+        ],
+        exclude = [
+            "googletest/src/gtest-all.cc",
+            "googletest/src/gtest_main.cc",
+        ]
+    ),
+    hdrs = glob([
+        "googletest/include/gtest/**/*.h",
+    ]),
+    copts = ["-Iexternal/googletest/googletest"],
+    includes = ["googletest/include"],
+    linkopts = ["-pthread"],
+    testonly = 1
+)
+
+cc_library(
+    name = "gtest_main",
+    srcs = ["googletest/src/gtest_main.cc"],
+    deps = [":gtest"],
+    testonly = 1,
+)
