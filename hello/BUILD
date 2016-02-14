@@ -6,5 +6,8 @@ cc_binary(
 cc_test(
     name = "world_test",
     srcs = ["world_test.cpp"],
-    deps = ["@googletest//:gtest_main"],
+    deps = [
+        "@googletest//:gmock",
+        "@googletest//:gtest_main",
+    ],
 )

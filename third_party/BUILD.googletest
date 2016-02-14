@@ -2,20 +2,14 @@ package(default_visibility = ["//visibility:public"])
 
 cc_library(
     name = "gtest",
-    srcs = glob([
-            "googletest/src/*.cc",
-            "googletest/src/*.h",
-        ],
-        exclude = [
-            "googletest/src/gtest-all.cc",
-            "googletest/src/gtest_main.cc",
-        ]
-    ),
-    hdrs = glob([
-        "googletest/include/gtest/**/*.h",
+    srcs = ["googletest/src/gtest-all.cc"],
+    hdrs = glob(["googletest/include/gtest/**/*.h"]),
+    textual_hdrs = glob([
+        "googletest/src/*.cc",
+        "googletest/src/*.h",
     ]),
-    copts = ["-Iexternal/googletest/googletest"],
     includes = ["googletest/include"],
+    copts = ["-Iexternal/googletest/googletest"],
     linkopts = ["-pthread"],
     testonly = 1
 )
@@ -25,4 +19,15 @@ cc_library(
     srcs = ["googletest/src/gtest_main.cc"],
     deps = [":gtest"],
     testonly = 1,
+)
+
+cc_library(
+    name = "gmock",
+    srcs = ["googlemock/src/gmock-all.cc"],
+    hdrs = glob(["googlemock/include/gmock/**/*.h"]),
+    textual_hdrs = glob(["googlemock/src/*.cc"]),
+    includes = ["googlemock/include"],
+    copts = ["-Iexternal/googletest/googlemock"],
+    deps = [":gtest"],
+    testonly = 1
 )
